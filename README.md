@@ -1,5 +1,5 @@
 # 🌱 NeuroGrow PWA
-
+⚠️ Project Status: Work in Progress (WIP) > This application is currently in active development. New features and neuro-scientific integrations are being added weekly.
 A minimalist wellness application designed to harmonize daily productivity with cognitive health. Built with **React** and **Tailwind CSS**, focusing on a high-contrast, distraction-free interface.
 
 ## 🧠 The Concept
