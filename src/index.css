@@ -1,0 +1,360 @@
+@layer base {
+  html, body {
+    @apply font-extralight;
+  }
+  
+  /* Isso garante que até os títulos fiquem fininhos */
+  h1, h2, h3, h4, h5, h6, p, span, button {
+    font-weight: 200 !important; /* 200 é o peso 'Extra Light' */
+  }
+}
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * NeuroGrow / Daninha Mind Bloom — Design System v2
+ * AESTHETIC: Dark botanical + Glassmorphism + Bento Grid
+ * INSPIRATION: Flo app, Apple Health, reference images with
+ * deep greens, translucent cards, gold accents, organic warmth.
+ * All colors MUST be HSL.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Deep botanical dark background */
+    --background: 0 0% 0%;
+    --foreground: 0% 0% 100%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0% 0% 100%;
+
+    --popover: 140 15% 8%;
+    --popover-foreground: 45 20% 92%;
+
+    /* Primary: vibrant botanical green */
+    --primary: 142 50% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: warm earth brown */
+    --secondary: 32 30% 18%;
+    --secondary-foreground: 40 25% 85%;
+
+    --muted: 140 10% 14%;
+    --muted-foreground: 140 8% 50%;
+
+    /* Accent: warm gold */
+    --accent: 42 80% 55%;
+    --accent-foreground: 0 0% 8%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 140 12% 14%;
+    --input: 140 12% 14%;
+    --ring: 142 50% 42%;
+
+    --radius: 1.25rem;
+
+    /* ===== DANINHA BRAND TOKENS ===== */
+    /* Category card colors — each area has its own identity */
+    --sleep-bg: 220 60% 15%;
+    --sleep-accent: 220 70% 55%;
+    --sleep-glow: 220 80% 40%;
+
+    --focus-bg: 32 50% 14%;
+    --focus-accent: 35 85% 55%;
+    --focus-glow: 35 90% 45%;
+
+    --mood-bg: 280 30% 14%;
+    --mood-accent: 280 50% 60%;
+    --mood-glow: 280 60% 45%;
+
+    --energy-bg: 15 45% 14%;
+    --energy-accent: 15 80% 55%;
+    --energy-glow: 15 85% 45%;
+
+    --nutrition-bg: 142 35% 12%;
+    --nutrition-accent: 142 55% 50%;
+    --nutrition-glow: 142 60% 38%;
+
+    --cycle-bg: 330 35% 14%;
+    --cycle-accent: 330 55% 55%;
+    --cycle-glow: 330 60% 42%;
+
+    /* Gold for premium / active elements */
+    --gold: 42 80% 55%;
+    --gold-dim: 42 50% 35%;
+
+    /* Glassmorphism */
+    --glass-bg: 140 15% 10% / 0.55;
+    --glass-border: 140 20% 25% / 0.25;
+    --glass-blur: 24px;
+    --glass-highlight: 140 30% 40% / 0.08;
+
+    /* Shadows */
+    --shadow-card: 0 8px 40px hsl(0 0% 0% / 0.4);
+    --shadow-glow-green: 0 0 60px hsla(142, 63%, 8%, 0.12);
+    --shadow-glow-gold: 0 0 40px hsla(124, 71%, 13%, 0.1);
+
+    /* Sidebar (required by shadcn) */
+    --sidebar-background: 140 20% 4%;
+    --sidebar-foreground: 45 20% 92%;
+    --sidebar-primary: 142 50% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 140 10% 14%;
+    --sidebar-accent-foreground: 45 20% 92%;
+    --sidebar-border: 140 12% 14%;
+    --sidebar-ring: 142 50% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Instrument Serif', serif;
+  }
+}
+
+@layer components {
+  /* ===== GLASSMORPHISM ===== */
+  .glass {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: var(--shadow-card), inset 0 1px 0 hsl(var(--glass-highlight));
+  }
+
+  .glass-strong {
+    background: hsl(140 15% 10% / 0.75);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    border: 1px solid hsl(140 20% 28% / 0.3);
+    box-shadow: var(--shadow-card), inset 0 1px 0 hsl(140 30% 40% / 0.1);
+  }
+
+  .glass-light {
+    background: hsl(140 15% 16% / 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(140 15% 25% / 0.2);
+  }
+
+  /* ===== BENTO GRID ===== */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .bento-card {
+    @apply rounded-3xl p-5 relative overflow-hidden;
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: var(--shadow-card);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  }
+
+  .bento-card:hover {
+    transform: translateY(-3px) scale(1.01);
+  }
+
+  .bento-card.span-2 {
+    grid-column: span 2;
+  }
+
+  /* ===== CATEGORY-COLORED CARDS ===== */
+  .card-sleep {
+    background: hsl(var(--sleep-bg) / 0.7);
+    border-color: hsl(var(--sleep-accent) / 0.2);
+  }
+  .card-sleep:hover { box-shadow: 0 0 30px hsl(var(--sleep-glow) / 0.2); }
+
+  .card-focus {
+    background: hsl(var(--focus-bg) / 0.7);
+    border-color: hsl(var(--focus-accent) / 0.2);
+  }
+  .card-focus:hover { box-shadow: 0 0 30px hsl(var(--focus-glow) / 0.2); }
+
+  .card-mood {
+    background: hsl(var(--mood-bg) / 0.7);
+    border-color: hsl(var(--mood-accent) / 0.2);
+  }
+  .card-mood:hover { box-shadow: 0 0 30px hsl(var(--mood-glow) / 0.2); }
+
+  .card-energy {
+    background: hsl(var(--energy-bg) / 0.7);
+    border-color: hsl(var(--energy-accent) / 0.2);
+  }
+  .card-energy:hover { box-shadow: 0 0 30px hsl(var(--energy-glow) / 0.2); }
+
+  .card-nutrition {
+    background: hsl(var(--nutrition-bg) / 0.7);
+    border-color: hsl(var(--nutrition-accent) / 0.2);
+  }
+  .card-nutrition:hover { box-shadow: 0 0 30px hsl(var(--nutrition-glow) / 0.2); }
+
+  .card-cycle {
+    background: hsl(var(--cycle-bg) / 0.7);
+    border-color: hsl(var(--cycle-accent) / 0.2);
+  }
+  .card-cycle:hover { box-shadow: 0 0 30px hsl(var(--cycle-glow) / 0.2); }
+
+  /* ===== BUTTONS ===== */
+  .btn-primary-glow {
+    @apply bg-primary text-primary-foreground font-semibold rounded-2xl px-8 py-4;
+    box-shadow: 0 4px 25px hsl(var(--primary) / 0.35), inset 0 1px 0 hsl(142 60% 55% / 0.3);
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-primary-glow:hover {
+    box-shadow: 0 8px 40px hsl(var(--primary) / 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-gold {
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(38 75% 48%));
+    @apply text-accent-foreground font-bold rounded-2xl px-8 py-4;
+    box-shadow: 0 4px 25px hsl(var(--gold) / 0.3);
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-gold:hover {
+    box-shadow: 0 8px 40px hsl(var(--gold) / 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-coral {
+    background: linear-gradient(135deg, hsl(15 80% 55%), hsl(25 85% 50%));
+    @apply text-primary-foreground font-bold rounded-2xl px-8 py-4;
+    box-shadow: 0 4px 20px hsl(15 80% 55% / 0.3);
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-coral:hover {
+    box-shadow: 0 6px 30px hsl(15 80% 55% / 0.5);
+    transform: translateY(-2px);
+  }
+
+  /* ===== TEXT EFFECTS ===== */
+  .text-gradient-botanical {
+    background: linear-gradient(135deg, hsl(142 55% 55%), hsl(160 50% 45%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(42 80% 60%), hsl(35 70% 50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ===== LOGO GLOW ===== */
+  .logo-glow {
+    filter: drop-shadow(0 0 20px hsl(142 50% 42% / 0.25)) drop-shadow(0 0 60px hsl(142 50% 42% / 0.1));
+  }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-botanical {
+    @apply rounded-full overflow-hidden;
+    background: hsl(var(--muted));
+    height: 5px;
+  }
+
+  .progress-botanical .bar {
+    height: 100%;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(160 50% 50%));
+    border-radius: 9999px;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2.5s ease-in-out infinite;
+  }
+
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.2); border-radius: 4px; }
+
+  /* ===== BOTANICAL BG TEXTURE ===== */
+  .bg-botanical-radial {
+    background:
+      radial-gradient(ellipse at 20% 80%, hsl(142 50% 20% / 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, hsl(160 40% 15% / 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, hsl(140 20% 4%) 0%, hsl(140 20% 4%) 100%);
+  }
+}
